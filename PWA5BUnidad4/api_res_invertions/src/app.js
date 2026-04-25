@@ -28,15 +28,11 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 //BAFS: Routes
+//BAFS: Routes
 const api = config.API_URL;
-app.get(`${api}`, (req,res)=>{
+app.get('/api/v1', (req,res)=>{
     res.send(
         `<h1>RESTful running in root</h1> <p> eCommerce: <b>${api}/api-docs</b> for more information.</p>`
-    );
-})
-app.get('/DrFIC', (req,res)=>{
-    res.send(
-        `<h1>RESTful running in DrFIC</h1> <p> eCommerce: <b>${api}/api-docs</b> for more information.</p>`
     );
 })
 // Routes
