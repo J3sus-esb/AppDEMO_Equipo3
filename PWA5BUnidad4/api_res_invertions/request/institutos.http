@@ -1,0 +1,61 @@
+@api = http://localhost:3020/api/v1/institutos
+#@api = http://187.229.22.99:8010/api/v1/institutos
+
+### GET - List All Institutos 
+GET {{api}}
+
+### GET - Get Instituto by OK Key
+GET {{api}}/3
+
+
+### GET - Get Instituto by OK Key (explicit)
+GET {{api}}/2?keyType=OK
+
+
+### GET - Get Instituto by BK Key
+GET {{api}}/15061?keyType=BK
+### ???? 404 - Get Instituto by Non-Existent Key, pero ahi sale 500 internal service error
+
+###  POST - Create New Instituto
+POST {{api}}
+Content-Type: application/json
+
+{
+  "IdInstitutoOK": "1001",
+  "IdInstitutoBK": "15060",
+  "DesInstituto": "Instituto Tecnologico de Celaya",
+  "Alias": "ITC",
+  "Matriz": "Central",
+  "Giro": "Educación"
+}
+
+### POST - Create Instituto with Optional Fields
+POST {{api}}
+Content-Type: application/json
+
+{
+  "IdInstitutoOK": "100",
+  "IdInstitutoBK": "15061",
+  "DesInstituto": "Instituto Superior de Formación",
+  "Alias": "ISFD",
+  "Matriz": "Matriz",
+  "Giro": "Formación Profesional",
+  "IdInstitutoSupOK": "1001"
+}
+
+### PUT - Update Instituto Item
+PUT {{api}}/100
+Content-Type: application/json
+
+{
+  "IdInstitutoOK": "1002",
+  "IdInstitutoBK": "15061",
+  "DesInstituto": "Instituto Tecnológico de Aguascalientes",
+  "Matriz": "Matriz",
+  "Giro": "Educación superior tecnológica",
+  "Alias": "ITA",
+  "IdInstitutoSupOK": "1001"
+}
+
+### DELETE - Remove Instituto Item
+DELETE {{api}}/1002
