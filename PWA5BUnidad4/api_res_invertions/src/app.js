@@ -29,6 +29,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 //BAFS: Rutas
 //BAFS: Rutas
+app.get('/', (req, res) => {
+    res.redirect('/api/v1');
+});
 const api = config.API_URL;
 app.get('/api/v1', (req,res)=>{
     res.send(
