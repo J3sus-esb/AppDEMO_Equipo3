@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 
-//Education
+//Educación
 const institutosSchema  = new mongoose.Schema({
     IdInstitutoOK : { type : String, required : true },
     IdInstitutoBK : { type : String, required : true },
@@ -11,7 +11,7 @@ const institutosSchema  = new mongoose.Schema({
     IdInstitutoSupOK  : { type : String, required : false }
 });
 
-//Education
+//Educación
 
 export default mongoose.model(
     'cat_institutos',
