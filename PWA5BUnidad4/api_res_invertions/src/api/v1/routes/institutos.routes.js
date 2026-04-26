@@ -14,5 +14,5 @@ router.put('/:id', InstitutosController.putInstitutoItem);
 //API ELIMINAR
 router.delete('/:id', InstitutosController.deleteInstitutoItem);
 
-router.post('/institutos', institutoController.addOne);
+router.post('/institutos', institutosController.addOne);
 export default router;  
