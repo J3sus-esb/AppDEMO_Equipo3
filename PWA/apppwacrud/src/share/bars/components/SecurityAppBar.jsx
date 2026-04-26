@@ -11,30 +11,32 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-//CAR: Add <--- Get submoduls security tables
+//NOTA 4.1.1: Barra de Navegacion - Modulo Seguridad
+//JAPV: Estados e importes de React
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+//AGU: Paginas principales del modulo
 const pages = ['Etiquetas', 'Periodos', 'Institutos', 'Usuarios'];
+//MASU: Opciones de usuario
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+//NOTA 4.1: Componente responsivo de barra de navegacion
 function ResponsiveAppBar() {
-/* const ResponsiveAppBar=() => { */
-const [anchorElNav, setAnchorElNav] = useState(null);
-const [anchorElUser, setAnchorElUser] = useState(null);
-const handleOpenNavMenu = (event) => {
-setAnchorElNav(event.currentTarget);
-};
-const handleOpenUserMenu = (event) => {
-setAnchorElUser(event.currentTarget);
-};
-//+++++++++++++++++++++++++++++++++
-//CAR: le agregamos el objeto e que se
-//envia al hacer click en opcion del menu.
-const handleCloseNavMenu = (e) => {
-console.log(e.target.innerText);
-//CAR: llamar funcion enviando e
-handleClickNavMenu(e);
-setAnchorElNav(null);
-};
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  //BAFS: Abrir menu de navegacion
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  //CDCH: Abrir menu de usuario
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+  //JAPV: Procesar evento del menu
+  const handleCloseNavMenu = (e) => {
+    //CGAC: Ejecutar accion del menu
+    handleClickNavMenu(e);
+    setAnchorElNav(null);
+  };
 const handleCloseUserMenu = () => {
 setAnchorElUser(null);
 };

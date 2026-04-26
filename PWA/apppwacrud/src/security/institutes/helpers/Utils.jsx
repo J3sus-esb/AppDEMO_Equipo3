@@ -7,7 +7,7 @@ Borrado: borrado,
 detail_row_reg: [ getDetailRowReg(usuarioReg) ],
 };
 };
-//CAR: genera subdocumento array detail_row_reg
+//BAFS: genera subdocumento array detail_row_reg
 //si no se envia el parametro el valor lo asigna por default
 export const getDetailRowReg = (usuarioReg = "SYSTEM") => {
 return {

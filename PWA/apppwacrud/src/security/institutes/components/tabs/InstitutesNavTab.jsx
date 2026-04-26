@@ -6,13 +6,13 @@ const InstitutesTabs = ["Institutos", "Negocios"];
 //{
 const InstitutesNavTab = ({currentRowInInstitutesTab,
 setCurrentTabInPrincipalTab}) => {
-//CAR: para saber cual es el numero de Tab seleccionado.
+//JAPV: para saber cual es el numero de Tab seleccionado.
 const [currenTabIndex, setCurrentTabIndex] = useState(0);
 const handleChange = (e) => {
 console.log("entro al handleChange", e.target.innerText.toUpperCase());
-//CAR: actualizar el nombre de la pestaña seleccionada.
+//CGAC: actualizar el nombre de la pestaña seleccionada.
 setCurrentTabInPrincipalTab(e.target.innerText.toUpperCase());
-//CAR: cada que realice un click en algun tap page
+//AGU: cada que realice un click en algun tap page
 //reiniciamos el valor del tap pase de business a false.
 //setBusinessTabInPrincipalTabIsSelected(false);
 //CAR: opciones (subdocumentos de la coleccion principal de institutos).
@@ -41,6 +41,7 @@ onChange={handleChange}
 aria-label="icon tabs example"
 textColor="primary"
 >
+    
 {InstitutesTabs.map((tab) => {
 return <Tab key={tab} label={tab} disabled ={currentRowInInstitutesTab ===
 null}/>;

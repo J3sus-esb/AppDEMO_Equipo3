@@ -1,19 +1,18 @@
-//JAPV: React
 import React, { useState, useEffect } from "react";
-//JAPV: Material
+//CGAC: Componentes Material UI
 import { Dialog, DialogContent, DialogTitle, Typography, TextField, DialogActions, Box, Alert, FormControlLabel, Checkbox, InputLabel, Select, MenuItem, FormHelperText } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import CloseIcon from "@mui/icons-material/Close";
 import SaveIcon from "@mui/icons-material/Save";
-//JAPV: Formik - Yup
+//AGU: Validación y gestión de formularios
 import { useFormik } from "formik";
 import * as Yup from "yup";
-//JAPV: Helpers
+//BAFS: Helpers para transformar valores
 import { InstituteValues } from "../../helpers/InstituteValues";
-//JAPV: Services
+//MASU: Servicios remotos
 import { AddOneInstitute } from "../../../institutes/services/remote/post/AddOneInstitute";
 import { GetAllLabels } from "../../../labels/services/remote/get/GetAllLabels";
-//JAPV: Constants (Datos mock temporales)
+//CDCH: Datos mock temporales
 import { TiposGiroMock } from "../../constants/TiposGiroData";
 
 const AddInstituteModal = ({AddInstituteShowModal, setAddInstituteShowModal}) => {
@@ -22,47 +21,25 @@ const AddInstituteModal = ({AddInstituteShowModal, setAddInstituteShowModal}) =>
     const [Loading, setLoading] = useState(false);
     const [InstitutesValuesLabel, setInstitutesValuesLabel] = useState([]);
 
-    //JAPV: En cuanto se abre la modal llama el metodo
-    //que ejecuta la API que trae todas las etiquetas de la BD.
+    // CAR: Al abrir la modal, se cargan datos de etiquetas
     useEffect(() => {
         if (AddInstituteShowModal) {
             getDataSelectInstitutesType();
         }
     }, [AddInstituteShowModal]);
 
-    //JAPV: Ejecutamos la API que obtiene todas las etiquetas
-    //y filtramos solo la etiqueta de Tipos Giros de Institutos
-    //para que los ID y Nombres se agreguen como items en el
-    //control <Select> del campo IdTipoGiroOK en la Modal.
     async function getDataSelectInstitutesType() {
         try {
-            console.log("🔄 Iniciando carga de etiquetas...");
+            console.log("Iniciando carga de etiquetas...");
             
             // JAPV: Temporalmente usamos datos mock mientras la API de etiquetas está en desarrollo
-            console.log("✅ Usando datos MOCK para Tipos de Giro");
+            console.log("Usando datos MOCK para Tipos de Giro");
             setInstitutesValuesLabel(TiposGiroMock);
             
-            /* // JAPV: Código original con API (descomentar cuando la API esté lista)
-            const Labels = await GetAllLabels();
-            console.log("📦 Labels obtenidas:", Labels);
-            
-            const InstitutesTypes = Labels.find(
-                (label) => label.IdEtiquetaOK === "IdTipoGiros"
-            );
-            console.log("🔍 Tipos de Giro encontrados:", InstitutesTypes);
-            
-            if (InstitutesTypes && InstitutesTypes.valores) {
-                console.log("✅ Valores:", InstitutesTypes.valores);
-                setInstitutesValuesLabel(InstitutesTypes.valores);
-            } else {
-                console.warn("⚠️ No se encontraron tipos de giros o la estructura es incorrecta");
-                console.warn("Estructura completa:", InstitutesTypes);
-                setInstitutesValuesLabel(TiposGiroMock);
-            }
-            */
+
         } catch (e) {
-            console.error("❌ Error al obtener Etiquetas para Tipos Giros de Institutos:", e);
-            console.log("📌 Usando datos MOCK como fallback");
+            console.error("rror al obtener Etiquetas para Tipos Giros de Institutos:", e);
+            console.log("Usando datos MOCK como fallback");
             setInstitutesValuesLabel(TiposGiroMock);
         }
     }
@@ -88,39 +65,37 @@ const AddInstituteModal = ({AddInstituteShowModal, setAddInstituteShowModal}) =>
             IdInstitutoSupOK: Yup.string(),
         }),
         onSubmit: async (values) => {
-            //JAPV: Mostramos el Loading
+           
+            //AGU: Mostramos estado de carga
             setLoading(true);
-            console.log("CAR: entro al onSubmit despues de hacer click en boton Guardar");
-            //JAPV: Reiniciamos los estados de las alertas de éxito y error
+            //MASU: Reiniciamos estados de alertas
             setMensajeErrorAlert(null);
             setMensajeExitoAlert(null);
             try {
-                //JAPV: Mutar los valores (true o false) de Matriz
+                //BAFS: Transformar valores booleanos a string (S/N)
                 values.Matriz == true ? (values.Matriz = "S") : (values.Matriz = "N");
-                //CAR: Extraer los datos de los campos de
-                //la ventana modal que ya tiene Formik.
+                //CDCH: Estructura de datos - Mapear campos de formulario
                 const Institute = InstituteValues(values);
-                //CAR: mandamos a consola los datos extraidos
-                console.log("<<Institute>>", Institute);
-                //CAR: llamar el metodo que desencadena toda la logica
+                //JAPV: Llamar API para crear Instituto
                 //para ejecutar la API "AddOneInstitute" y que previamente
                 //construye todo el JSON de la coleccion de Institutos para
                 //que pueda enviarse en el "body" de la API y determinar si
                 //la inserción fue o no exitosa.
                 await AddOneInstitute(Institute);
-                //CAR: si no hubo error en el metodo anterior
-                //entonces lanzamos la alerta de exito.
+                
                 setMensajeExitoAlert("Instituto fue creado y guardado Correctamente");
             } catch (e) {
+                
                 setMensajeExitoAlert(null);
                 setMensajeErrorAlert("No se pudo crear el Instituto");
             }
-            //CAR: ocultamos el Loading.
+            //CGAC: Finalizar estado de carga
             setLoading(false);
         },
     });
 
-    //CAR: props structure for TextField Control.
+
+    //AGU: Configuración reutilizable de campos
     const commonTextFieldProps = {
         onChange: formik.handleChange,
         onBlur: formik.handleBlur,
@@ -136,18 +111,18 @@ const AddInstituteModal = ({AddInstituteShowModal, setAddInstituteShowModal}) =>
             fullWidth
         >
             <form onSubmit={formik.handleSubmit}>
-                {/* CAR: Aqui va el Titulo de la Modal */}
+                {/* NOTA 3.4: Encabezado - Título de la Modal */}
                 <DialogTitle>
                     <Typography component="h6">
                         <strong>Agregar Nuevo Instituto</strong>
                     </Typography>
                 </DialogTitle>
-                {/* CAR: Aqui va un tipo de control por cada Propiedad de Institutos */}
+                {/* NOTA 3.5: Campos de entrada - Formulario de datos */}
                 <DialogContent 
                     sx={{ display: 'flex', flexDirection: 'column' }}
                     dividers
                 >
-                    {/* CAR: Campos de captura o selección */}
+                    {/* NOTA 3.5.1: TextFields para captura de datos */}
                     <TextField
                         id="IdInstitutoOK"
                         label="IdInstitutoOK*"
@@ -235,7 +210,7 @@ const AddInstituteModal = ({AddInstituteShowModal, setAddInstituteShowModal}) =>
                         helperText={ formik.touched.IdInstitutoSupOK && formik.errors.IdInstitutoSupOK }
                     />
                 </DialogContent>
-                {/* CAR: Aqui van las acciones del usuario como son las alertas o botones */}
+                {/* NOTA 3.6: Acciones - Alertas y botones de control */}
                 <DialogActions
                     sx={{ display: 'flex', flexDirection: 'row' }}
                 >

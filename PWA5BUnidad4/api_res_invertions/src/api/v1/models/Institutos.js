@@ -12,7 +12,6 @@ const institutosSchema  = new mongoose.Schema({
 });
 
 //Educación
-
 export default mongoose.model(
     'cat_institutos',
     institutosSchema,

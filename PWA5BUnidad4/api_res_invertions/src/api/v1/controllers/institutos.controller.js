@@ -3,7 +3,6 @@ import boom from '@hapi/boom';
 import { OK, FAIL } from '../../../middlewares/resp.handler';
 
 //CGAC: API GET 
-//---------------------------------------- 
 //AGU: Todos los Institutos.
 export const getInstitutosList = async (req, res, next) => {
   try {
@@ -35,8 +34,6 @@ export const getInstitutoItem = async (req, res, next) => {
 };
 
 //CDCH: API POST
-//----------------------------------------
-//NOTA 7.2 Y 7.2.1: Agregar nuevo Instituto con manejo de status 201/409
 export const postInstitutoItem = async (req, res, next) => {
   try {
     const newInstituto = req.body;
@@ -51,21 +48,17 @@ export const postInstitutoItem = async (req, res, next) => {
       // Status 201: Created - Indica creación exitosa
       res.status(201).json(
         OK('Instituto agregado correctamente al catálogo.', institutoCreated)
-      );
-    }
+      );}
   } catch (error) {
     // Manejo de errores específicos
     if (error.code === 11000) {
       // Status 409: Conflict - Clave duplicada
       return res.status(409).json(
         FAIL('Instituto ya existe en el sistema.', error)
-      );
-    }
-    next(error);
-  }
-};
+      );}
+    next(error);}};
 
-//NOTA 7.1.2: Controlador para agregar elemento a subdocumento (array)
+    
 export const pushElementToSubdocument = async (req, res, next) => {
   try {
     const { id, fieldName } = req.params;
@@ -89,8 +82,6 @@ export const pushElementToSubdocument = async (req, res, next) => {
 };
 
 //BAFS: API PUT
-//----------------------------------------
-//NOTA 8.2: Actualizar Instituto existente
 export const putInstitutoItem = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -109,7 +100,6 @@ export const putInstitutoItem = async (req, res, next) => {
   }
 };
 
-//NOTA 8.1.1: Controlador para actualizar elemento en subdocumento (array)
 export const updateElementInSubdocument = async (req, res, next) => {
   try {
     const { id, fieldName } = req.params;
@@ -133,8 +123,6 @@ export const updateElementInSubdocument = async (req, res, next) => {
 };
 
 //MASU: API DELETE
-//----------------------------------------
-//NOTA 9.2: Eliminar Instituto existente
 export const deleteInstitutoItem = async (req, res, next) => {
   try {
     const { id } = req.params;

@@ -13,11 +13,7 @@ reducers: {
 SET_DATA_INSTITUTES: (state, action) => {
 console.log('<<REDUX-REDUCER>>:<<SET_DATA_INSTITUTES>>', action.payload);
 //state.institutesDataArr = action.payload.institutesDataArr;
-state.institutesDataArr = action.payload
-}
-}
-}
-);
+state.institutesDataArr = action.payload}}});
 export const {
 SET_DATA_INSTITUTES,
 //ADD_PRODUCT_SELECTED,

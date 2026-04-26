@@ -9,11 +9,10 @@ router.get('/:id', InstitutosController.getInstitutoItem);
 
 //API CREAR
 //API ACTUALIZAR
-//NOTA 8.3: Ruta PUT para actualizar Instituto
 router.put('/:id', InstitutosController.putInstitutoItem);
 
 //API ELIMINAR
-//NOTA 9.3: Ruta DELETE para eliminar Instituto
 router.delete('/:id', InstitutosController.deleteInstitutoItem);
 
+router.post('/institutos', institutoController.addOne);
 export default router;  

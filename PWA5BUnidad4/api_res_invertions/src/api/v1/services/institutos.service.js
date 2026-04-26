@@ -43,9 +43,8 @@ export const postInstitutos = async (paInstitutoItem) => {
   }
 };
 
-//NOTA 7.1.2: PUSH A SUBDOCUMENTO - ARREGLO DE OBJETOS
-//JAPV: ADD ELEMENT TO SUBDOCUMENT ARRAY
-//Ejemplo: Agregar información adicional a institutos (si tuviera subdocumentos)
+
+//JAPV: Agregar información adicional a institutos (si tuviera subdocumentos)
 export const pushObjToSubdocument = async (id, objToAdd, fieldName) => {
   try {
     // fieldName ejemplo: "info_adicional", "detalles", etc
@@ -60,7 +59,6 @@ export const pushObjToSubdocument = async (id, objToAdd, fieldName) => {
   }
 };
 
-//NOTA 8.1: PUT (MODIFY) INSTITUTOS
 //BAFS: PUT API
 //Método para actualizar un Instituto existente
 export const putInstitutoItem = async (id, paInstitutoItem) => {
@@ -75,9 +73,8 @@ export const putInstitutoItem = async (id, paInstitutoItem) => {
   }
 };
 
-//NOTA 8.1.1: PUT SUBDOCUMENTO - ARREGLO DE OBJETOS
-//CDCH: UPDATE ELEMENT IN SUBDOCUMENT ARRAY
-//Método para actualizar elementos dentro de un arreglo de objetos en un subdocumento
+
+//CDCH: Metodo para actualizar elementos dentro de un arreglo de objetos en un subdocumento
 export const updateObjInSubdocument = async (id, objToUpdate, fieldName) => {
   try {
     // fieldName ejemplo: "info_adicional", "detalles", etc
@@ -92,7 +89,7 @@ export const updateObjInSubdocument = async (id, objToUpdate, fieldName) => {
   }
 };
 
-//NOTA 9.1: DELETE (REMOVE) INSTITUTOS
+
 //AGU: DELETE API
 //Método para eliminar un Instituto existente
 export const deleteInstitutoItem = async (id) => {

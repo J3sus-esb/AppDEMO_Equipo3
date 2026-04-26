@@ -1,4 +1,4 @@
-//NOTA: Este archivo contiene funciones ASYNCRONAS
+//BAFS Este archivo contiene funciones ASYNCRONAS
 //que nos ayuda a obtener la respuesta del servidor
 //y poder mandarla al SLICE y a su estado
 import { getInstitutesAll } from './actions/institutesActions';
@@ -14,7 +14,4 @@ SET_DATA_INSTITUTES(
 //institutesDataArr: await getInstitutesAll(),
 await getInstitutesAll(),
 //}
-)
-)
-};
-};
+))};};
